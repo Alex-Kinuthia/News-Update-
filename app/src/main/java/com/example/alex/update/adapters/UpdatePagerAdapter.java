@@ -23,7 +23,7 @@ public class UpdatePagerAdapter  extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return UpdateDetailFragment.newInstance(mUpdates.get(position));
+        return UpdateDetailFragment.newInstance(mUpdates, position);
     }
 
     @Override

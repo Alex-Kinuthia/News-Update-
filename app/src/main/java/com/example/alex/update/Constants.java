@@ -10,6 +10,8 @@ public class Constants {
     public static final String UPDATE_QUERY_PARAMETER = "query";
     public static final String PREFERENCES_TITLE_KEY = "title";
     public static final String FIREBASE_CHILD_UPDATES = "updates";
+    public static final String EXTRA_KEY_POSITION = "position";
+    public static final String EXTRA_KEY_UPDATES = "updates";
 
 }
 
