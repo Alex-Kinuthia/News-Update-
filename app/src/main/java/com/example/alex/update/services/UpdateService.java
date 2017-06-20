@@ -40,36 +40,36 @@ public class UpdateService {
     }
 
 
-//    public ArrayList<Update> processResults(Response response) {
-//        ArrayList<Update> updates = new ArrayList<>();
-//
-//        try {
-//            String jsonData = response.body().string();
-//            if (response.isSuccessful()) {
-//                JSONObject updateJSON = new JSONObject(jsonData);
-//                JSONArray dataJSON = updateJSON.getJSONArray("articles");
-//                for (int i = 0; i < dataJSON.length(); i++) {
-//                    JSONObject updataryJSON = dataJSON.getJSONObject(i);
-//                    String author = updataryJSON.optString("author");
-//                    String title = updataryJSON.optString("title");
-//                    String description = updataryJSON.optString("description");
-//                    String url = updataryJSON.optString("url");
-//                    String urlToImage = updataryJSON.optString("urlToImage");
-//                    String publishedAt = updataryJSON.optString("publishedAt");
-//                    Update update = new Update( author, title, description, url , urlToImage, publishedAt);
-//                    updates.add(update);
-////                    if (!imageUrl.isEmpty()){
-////                        beer.setImageUrl(imageUrl);
-////                    }
-//                    updates.add(update);
-//                }
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return updates;
-//    }
+   public ArrayList<Update> processResults(Response response) {
+       ArrayList<Update> updates = new ArrayList<>();
+
+       try {
+          String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject updateJSON = new JSONObject(jsonData);
+                JSONArray dataJSON = updateJSON.getJSONArray("articles");
+                for (int i = 0; i < dataJSON.length(); i++) {
+                    JSONObject updataryJSON = dataJSON.getJSONObject(i);
+                    String author = updataryJSON.getString("author");
+                    String title = updataryJSON.optString("title");
+                    String description = updataryJSON.optString("description");
+                    String url = updataryJSON.optString("url");
+                    String imageUrl = updataryJSON.optString("urlToImage");
+                    String publishedAt = updataryJSON.optString("publishedAt");
+                    Update update = new Update( author, title, description, url , imageUrl, publishedAt);
+                    updates.add(update);
+//                    if (!imageUrl.isEmpty()){
+//                        beer.setImageUrl(imageUrl);
+//                    }
+                    updates.add(update);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+       }
+        return updates;
+   }
 }
 

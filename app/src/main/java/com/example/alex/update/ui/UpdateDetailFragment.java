@@ -1,109 +1,106 @@
 package com.example.alex.update.ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.alex.update.Constants;
 import com.example.alex.update.R;
+import com.example.alex.update.models.Update;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.picasso.Picasso;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UpdateDetailFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link UpdateDetailFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class UpdateDetailFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import org.parceler.Parcels;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import java.util.ArrayList;
 
-    private OnFragmentInteractionListener mListener;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
-    public UpdateDetailFragment() {
-        // Required empty public constructor
-    }
+public class UpdateDetailFragment extends Fragment implements View.OnClickListener {
+    private static final int MAX_WIDTH = 400;
+    private static final int MAX_HEIGHT = 300;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UpdateDetailFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UpdateDetailFragment newInstance(String param1, String param2) {
-        UpdateDetailFragment fragment = new UpdateDetailFragment();
+    @Bind(R.id.updateImageView) ImageView mImageLabel;
+    @Bind(R.id.updateAuthorTextView) TextView mAuthorLabel;
+    @Bind(R.id.updateTitleTextView) TextView mTitleLabel;
+    @Bind(R.id.updateDescriptionTextView) TextView mDescriptionLabel;
+    @Bind(R.id.urlTextView) TextView mUrlLabel;
+    @Bind(R.id.updatePublishedAtTextView) TextView mPublishedAtLabel;
+    @Bind(R.id.saveNewsButton) TextView mSaveNewsButton;
+
+    private Update mUpdate;
+    private ArrayList<Update> mUpdates;
+    private int mPosition;
+
+    public static UpdateDetailFragment newInstance(ArrayList<Update> updates, Integer position) {
+        UpdateDetailFragment updateDetailFragment = new UpdateDetailFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+
+        args.putParcelable("update", Parcels.wrap(updates));
+        args.putInt(Constants.EXTRA_KEY_POSITION, position);
+        updateDetailFragment.setArguments(args);
+        return updateDetailFragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        mUpdate = Parcels.unwrap(getArguments().getParcelable("update"));
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update_detail, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_update_detail, container, false);
+        ButterKnife.bind(this, view);
+
+        Picasso.with(view.getContext())
+                .load(mUpdate.getImageUrl())
+                .resize(MAX_WIDTH, MAX_HEIGHT)
+                .centerCrop()
+                .into(mImageLabel);
+
+        mAuthorLabel.setText("Author: " + mUpdate.getAuthor());
+        mUrlLabel.setOnClickListener(this);
+        mTitleLabel.setText("Title " + mUpdate.getTitle());
+        mPublishedAtLabel.setText("PublishedAt: " + mUpdate.getPublishedAt());
+        mDescriptionLabel.setText("Description: " + mUpdate.getDescription());
+
+
+        mSaveNewsButton.setOnClickListener(this);
+
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+
+
+    @Override
+    public void onClick(View v) {
+
+        if (v == mUrlLabel) {
+            Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                    Uri.parse(mUpdate.getUrl()));
+            startActivity(webIntent);
+        }
+
+        if (v == mSaveNewsButton) {
+            DatabaseReference updateRef = FirebaseDatabase
+                    .getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_UPDATES);
+            updateRef.push().setValue(mUpdate);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
 }

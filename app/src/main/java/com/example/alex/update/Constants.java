@@ -8,6 +8,8 @@ public class Constants {
     public static final String UPDATE_API_KEY = BuildConfig.UPDATE_API_KEY;
     public static final String UPDATE_BASE_URL = "https://newsapi.org/v1/articles";
     public static final String UPDATE_QUERY_PARAMETER = "query";
+    public static final String PREFERENCES_TITLE_KEY = "title";
+    public static final String FIREBASE_CHILD_UPDATES = "updates";
 
 }
 

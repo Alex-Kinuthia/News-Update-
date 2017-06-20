@@ -4,10 +4,124 @@
     android:layout_height="match_parent"
     tools:context="com.example.alex.update.ui.UpdateDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="@color/colorPrimary"/>
 
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="196dp"
+            android:id="@+id/updateImageView"
+            android:src="@drawable/ano"
+            android:scaleType="centerCrop"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingTop="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-06-19T18:54:13Z"
+                android:id="@+id/updatePublishedAtTextView"
+                android:layout_alignTop="@+id/updateTitleTextView"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:textColor="@color/colorPrimaryText"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NO HUGE REQUESTS"
+                android:id="@+id/updateTitleTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="20sp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Connie Loizos"
+                android:id="@+id/updateAuthorTextView"
+                android:layout_below="@+id/updateTitleTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColor="@color/colorSecondaryText"
+                android:textStyle="italic" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_above="@+id/saveBeerButton"
+                android:paddingLeft="30dp"
+                android:paddingTop="30dp"
+                android:paddingRight="30dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cristiano Ronaldo will not hold Man Utd to ransom over wage demands in bid to force a move back to Old Trafford
+"
+                    android:id="@+id/updateDescriptionTextView"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View on More"
+                    android:id="@+id/urlTextView"
+                    android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+                    android:drawablePadding="5dp"
+                    android:textColor="@color/colorTextIcons"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center" />
+
+            </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Save News"
+                android:id="@+id/saveNewsButton"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorTextIcons"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </LinearLayout>
 </FrameLayout>
