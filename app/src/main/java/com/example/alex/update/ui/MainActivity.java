@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
 
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.VideoView;
 
 import com.example.alex.update.R;
 import com.github.clans.fab.FloatingActionButton;
@@ -50,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        VideoView videoview = (VideoView) findViewById(R.id.videoview);
+        Uri uri = Uri.parse("android.resource://"+getPackageName()+"/"+R.raw.aleki);
+        videoview.setVideoURI(uri);
+        videoview.start();
 
         Fragment main = new Fragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();

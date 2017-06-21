@@ -6,16 +6,13 @@
     android:layout_height="match_parent"
     tools:context="com.example.alex.update.ui.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/news"
-        android:scaleType="centerCrop"
+    <VideoView
+        android:id="@+id/videoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_gravity="center" />
 
     <FrameLayout
         android:id="@+id/content_frame"
@@ -39,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Politics"
+        android:drawableLeft="@drawable/be"
         android:id="@+id/getPoliticsButton"
         android:background="@color/colorAccent"
         android:textColor="@color/colorTextIcons"
