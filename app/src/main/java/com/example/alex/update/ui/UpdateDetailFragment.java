@@ -57,7 +57,9 @@ public class UpdateDetailFragment extends Fragment implements View.OnClickListen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUpdate = Parcels.unwrap(getArguments().getParcelable("update"));
+        mUpdates = Parcels.unwrap(getArguments().getParcelable("update"));
+        mPosition = getArguments().getInt(Constants.EXTRA_KEY_POSITION);
+        mUpdate = mUpdates.get(mPosition);
     }
 
     @Override

@@ -1,9 +1,12 @@
 package com.example.alex.update.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by alex on 6/19/17.
  */
 
+@Parcel
 public class Update {
     private String mAuthor;
     private String mTitle;
@@ -50,7 +53,4 @@ public class Update {
     public String getPublishedAt() {
         return mPublishedAt;
     }
-
-
-
 }

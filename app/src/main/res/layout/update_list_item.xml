@@ -4,51 +4,54 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <ImageView
         android:layout_width="130dp"
-        android:layout_height="100dp"
-        android:id="@+id/restaurantImageView"
+        android:layout_height="139dp"
+        android:id="@+id/updateImageView"
         android:src="@drawable/ano"
         android:scaleType="centerCrop"/>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
+        android:layout_height="147dp"
         android:background="#ffffff"
-        android:layout_height="match_parent"
+        android:orientation="vertical"
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/updateTitleTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/restaurantNameTextView"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:text="NO HUGE REQUESTS "
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="13dp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/updateAuthorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Connie Loizos"
-            android:id="@+id/categoryTextView"
-            android:layout_below="@+id/restaurantNameTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:textStyle="italic"/>
+            android:layout_below="@+id/updateTitleTextView"
+            android:text="Connie Loizos"
+            android:textStyle="italic" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="116dp">
 
             <TextView
+                android:id="@+id/updatePublishedAtTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2017-06-19T20:07:42Z"
-                android:id="@+id/ratingTextView"
-                android:layout_alignParentBottom="true"
+                android:textColor="@color/colorAccent"
+                android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/colorAccent"/>
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="26dp" />
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

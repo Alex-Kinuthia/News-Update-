@@ -56,6 +56,7 @@ public class UpdateListAdapter extends RecyclerView.Adapter<UpdateListAdapter.Up
     public class UpdateViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         @Bind(R.id.updateImageView) ImageView mUpdateImageView;
         @Bind(R.id.updateTitleTextView) TextView mTitleTextView;
+        @Bind(R.id.updateAuthorTextView) TextView mAuthorTextView;
         @Bind(R.id.updatePublishedAtTextView) TextView mPublishedAtTextView;
 
 
@@ -76,6 +77,7 @@ public class UpdateListAdapter extends RecyclerView.Adapter<UpdateListAdapter.Up
                     .into(mUpdateImageView);
 
 
+            mAuthorTextView.setText(update.getAuthor());
             mTitleTextView.setText(update.getTitle());
             mPublishedAtTextView.setText(update.getPublishedAt());
 

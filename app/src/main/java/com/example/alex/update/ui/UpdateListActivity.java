@@ -47,52 +47,16 @@ public class UpdateListActivity extends AppCompatActivity {
             ButterKnife.bind(this);
 
             Intent intent = getIntent();
-            String title = intent.getStringExtra("title");
+            String source = intent.getStringExtra("source");
 
-            getUpdates(title);
+            getUpdates(source);
 
-            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mRecentTitle = mSharedPreferences.getString(Constants.PREFERENCES_TITLE_KEY, null);
-
-            if (mRecentTitle != null) {
-                getUpdates(mRecentTitle);
-            }
-        }
-
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.menu_search, menu);
-            ButterKnife.bind(this);
-
-            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            mEditor = mSharedPreferences.edit();
-
-            MenuItem menuItem = menu.findItem(R.id.action_search);
-            SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
-
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    addToSharedPreferences(query);
-                    getUpdates(query);
-                    return false;
-                }
-
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-
-            });
-
-            return true;
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            return super.onOptionsItemSelected(item);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//
+//        if (mRecentAddress != null) {
+//            getRestaurants(mRecentAddress);
+//        }
         }
 
         private void getUpdates(String title) {
@@ -124,16 +88,7 @@ public class UpdateListActivity extends AppCompatActivity {
                 }
             });
         }
-
-        private void addToSharedPreferences(String title) {
-            mEditor.putString(SyncStateContract.Constants.PREFERENCES_TITLE_KEY, title).apply();
-        }
-
     }
-
-
-
-
 
 
 
