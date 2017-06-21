@@ -1,8 +1,13 @@
 package com.example.alex.update.ui;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.speech.RecognizerIntent;
 import android.support.annotation.NonNull;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alex.update.R;
 import com.github.clans.fab.FloatingActionButton;
@@ -43,8 +49,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //added butterknife
         ButterKnife.bind(this);
+
+        Fragment main = new Fragment();
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.content_frame, main);
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+        ft.addToBackStack(null);
+        ft.commit();
+        //added butterknife
+
 
         //adding a font
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
@@ -89,21 +103,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
-        return super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
-        if (id == R.id.action_logout) {
-            logout();
-            return true;
+        switch (id) {
+            case R.id.action_contacts:
+                Intent call= new Intent(Intent.ACTION_DIAL);
+                startActivity(call);
+                return true;
+            case R.id.action_settings:
+                Intent settings = new Intent(android.provider.Settings.ACTION_SETTINGS);
+                startActivity(settings);
+                return true;
+            case R.id.action_logout:
+                logout();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1234 && resultCode == RESULT_OK) {
+            String voice_text = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS).get(0);
+            Toast.makeText(getApplicationContext(),voice_text,Toast.LENGTH_LONG).show();
+
+        }
     }
 
     private void logout() {
