@@ -5,9 +5,9 @@
     <item android:id="@+id/action_settings"
         android:showAsAction="never"
         android:title="Settings"/>
-    <item android:id="@+id/action_status"
+    <item android:id="@+id/action_saved_news"
         android:showAsAction="never"
-        android:title="Status" />
+        android:title="Saved  News" />
     <item
         android:id="@+id/action_logout"
         android:title="Logout"

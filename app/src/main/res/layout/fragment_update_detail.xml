@@ -20,7 +20,7 @@
 
         <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="196dp"
+            android:layout_height="168dp"
             android:id="@+id/updateImageView"
             android:src="@drawable/ano"
             android:scaleType="centerCrop"/>
@@ -32,7 +32,7 @@
             android:paddingTop="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingBottom="20dp">
+            android:paddingBottom="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,8 +52,9 @@
                 android:id="@+id/updateTitleTextView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:textColor="@color/colorPrimaryDark"
+                android:paddingTop="20dp"
                 android:textStyle="bold" />
 
 
@@ -82,7 +83,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_above="@+id/saveNewsButton"
                 android:paddingLeft="30dp"
-                android:paddingTop="30dp"
+                android:paddingTop="5dp"
                 android:paddingRight="30dp">
 
                 <TextView
@@ -94,6 +95,7 @@
                     android:textColor="@color/colorTextIcons"
                     android:textSize="15sp"
                     android:textStyle="bold"
+                    android:paddingTop="5dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="center" />
 

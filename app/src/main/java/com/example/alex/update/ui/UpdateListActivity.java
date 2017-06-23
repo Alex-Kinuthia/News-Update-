@@ -31,25 +31,25 @@ import okhttp3.Response;
 
 public class UpdateListActivity extends AppCompatActivity {
 
-        private SharedPreferences mSharedPreferences;
-        private SharedPreferences.Editor mEditor;
-        private String mRecentTitle;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
+    private String mRecentTitle;
 
-        @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
+    @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
 
-        private UpdateListAdapter mAdapter;
-        public ArrayList<Update> mUpdates = new ArrayList<>();
+    private UpdateListAdapter mAdapter;
+    public ArrayList<Update> mUpdates = new ArrayList<>();
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_update);
-            ButterKnife.bind(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_update);
+        ButterKnife.bind(this);
 
-            Intent intent = getIntent();
-            String source = intent.getStringExtra("source");
+        Intent intent = getIntent();
+        String source = intent.getStringExtra("source");
 
-            getUpdates(source);
+        getUpdates(source);
 
 //        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 //        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
@@ -57,46 +57,38 @@ public class UpdateListActivity extends AppCompatActivity {
 //        if (mRecentAddress != null) {
 //            getRestaurants(mRecentAddress);
 //        }
-        }
-
-        private void getUpdates(String title) {
-            final UpdateService updateService = new UpdateService();
-
-            updateService.findUpdates(title, new Callback() {
-
-                @Override
-                public void onFailure(Call call, IOException e) {
-                    e.printStackTrace();
-                }
-
-                @Override
-                public void onResponse(Call call, Response response) {
-                    mUpdates = updateService.processResults(response);
-
-                    UpdateListActivity.this.runOnUiThread(new Runnable() {
-
-                        @Override
-                        public void run() {
-                            mAdapter = new UpdateListAdapter(getApplicationContext(), mUpdates);
-                            mRecyclerView.setAdapter(mAdapter);
-                            RecyclerView.LayoutManager layoutManager =
-                                    new LinearLayoutManager(UpdateListActivity.this);
-                            mRecyclerView.setLayoutManager(layoutManager);
-                            mRecyclerView.setHasFixedSize(true);
-                        }
-                    });
-                }
-            });
-        }
     }
 
+    private void getUpdates(String title) {
+        final UpdateService updateService = new UpdateService();
 
+        updateService.findUpdates(title, new Callback() {
 
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+            }
 
+            @Override
+            public void onResponse(Call call, Response response) {
+                mUpdates = updateService.processResults(response);
 
+                UpdateListActivity.this.runOnUiThread(new Runnable() {
 
-
-
+                    @Override
+                    public void run() {
+                        mAdapter = new UpdateListAdapter(getApplicationContext(), mUpdates);
+                        mRecyclerView.setAdapter(mAdapter);
+                        RecyclerView.LayoutManager layoutManager =
+                                new LinearLayoutManager(UpdateListActivity.this);
+                        mRecyclerView.setLayoutManager(layoutManager);
+                        mRecyclerView.setHasFixedSize(true);
+                    }
+                });
+            }
+        });
+    }
+}
 
 
 

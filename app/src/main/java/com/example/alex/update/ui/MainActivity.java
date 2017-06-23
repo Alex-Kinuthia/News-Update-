@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
+                    getSupportActionBar().setTitle("WelcomeActivity, " + user.getDisplayName() + "!");
                 } else {
 
                 }
@@ -124,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent call= new Intent(Intent.ACTION_DIAL);
                 startActivity(call);
                 return true;
+
             case R.id.action_settings:
                 Intent settings = new Intent(android.provider.Settings.ACTION_SETTINGS);
                 startActivity(settings);
@@ -154,55 +155,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-            @Override
-            public void onClick(View v) {
-                //gathering data from edit text
-                if(v == mgetNewsButton) {
-                    String update = "talksport";
-                    Log.d(TAG, update);
-                    Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
-                    intent.putExtra("source", update);
-                    startActivity(intent);
-                }
-
-                if(v == mPoliticsButton) {
-                    String update = "breitbart-news";
-                    Log.d(TAG, update);
-                    Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
-                    intent.putExtra("source", update);
-                    startActivity(intent);
-                }
-
-                if(v == mEntertainmentButton) {
-                    String update = "entertainment-weekly";
-                    Log.d(TAG, update);
-                    Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
-                    intent.putExtra("source", update);
-                    startActivity(intent);
-                }
-
-                if(v == mBusinessButton) {
-                    String update = "business-insider";
-                    Log.d(TAG, update);
-                    Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
-                    intent.putExtra("source", update);
-                    startActivity(intent);
-                }
-
-                if(v == mTecnologyButton) {
-                    String update = "engadget";
-                    Log.d(TAG, update);
-                    Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
-                    intent.putExtra("source", update);
-                    startActivity(intent);
-                }
-
-
-
-                if (v == msavedNewsButton) {
-                    Intent intent = new Intent(MainActivity.this, SavedUpdateListActivity.class);
-                    startActivity(intent);
-                }
-
-            }
+    @Override
+    public void onClick(View v) {
+        //gathering data from edit text
+        if(v == mgetNewsButton) {
+            String update = "talksport";
+            Log.d(TAG, update);
+            Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+            intent.putExtra("source", update);
+            startActivity(intent);
         }
+
+        if(v == mPoliticsButton) {
+            String update = "breitbart-news";
+            Log.d(TAG, update);
+            Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+            intent.putExtra("source", update);
+            startActivity(intent);
+        }
+
+        if(v == mEntertainmentButton) {
+            String update = "entertainment-weekly";
+            Log.d(TAG, update);
+            Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+            intent.putExtra("source", update);
+            startActivity(intent);
+        }
+
+        if(v == mBusinessButton) {
+            String update = "business-insider";
+            Log.d(TAG, update);
+            Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+            intent.putExtra("source", update);
+            startActivity(intent);
+        }
+
+        if(v == mTecnologyButton) {
+            String update = "engadget";
+            Log.d(TAG, update);
+            Intent intent = new Intent(MainActivity.this, UpdateListActivity.class);
+            intent.putExtra("source", update);
+            startActivity(intent);
+        }
+
+
+
+        if (v == msavedNewsButton) {
+            Intent intent = new Intent(MainActivity.this, SavedUpdateListActivity.class);
+            startActivity(intent);
+        }
+
+    }
+}

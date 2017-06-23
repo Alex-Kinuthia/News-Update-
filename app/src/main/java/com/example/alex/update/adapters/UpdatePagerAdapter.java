@@ -36,4 +36,3 @@ public class UpdatePagerAdapter  extends FragmentPagerAdapter {
         return mUpdates.get(position).getTitle();
     }
 }
-

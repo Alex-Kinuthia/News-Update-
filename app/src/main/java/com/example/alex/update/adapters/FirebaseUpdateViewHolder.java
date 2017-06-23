@@ -28,7 +28,7 @@ import java.util.ArrayList;
  */
 
 public class FirebaseUpdateViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
-    private static final int MAX_WIDTH = 200;
+    private static final int MAX_WIDTH = 600;
     private static final int MAX_HEIGHT = 200;
 
     View mView;
