@@ -29,8 +29,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="14dp"
             android:text="MPASHO KWELI"
+            android:paddingLeft="15dp"
             android:textColor="@color/colorPrimary"
             android:textSize="50sp"
             android:textStyle="bold" />
